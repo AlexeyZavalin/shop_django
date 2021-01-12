@@ -16,7 +16,7 @@ class Category(models.Model):
 class Product(models.Model):
     title = models.CharField(max_length=50, null=False, blank=False, verbose_name='Имя товара', db_index=True)
     slug = models.SlugField()
-    category = models.ForeignKey(Category, on_delete=models.DO_NOTHING)
+    category = models.ForeignKey(Category, on_delete=models.DO_NOTHING, related_name="products")
     price = models.DecimalField(max_digits=10, decimal_places=2, db_index=True)
     description = models.TextField(null=True, blank=True)
     in_stock = models.BooleanField(default=True)

@@ -9,7 +9,8 @@ class CategoryProducts(ListView):
 
     def get_queryset(self):
         slug = self.kwargs.get('category_slug')
-        products = Product.objects.filter(category__slug=slug)
+        category = Category.objects.get(slug=slug)
+        products = category.products.all()
         return products
 
 
@@ -18,7 +19,7 @@ class DetailProduct(DetailView):
     template_name = 'productsapp/product.html'
     context_object_name = 'product'
 
-    # def get_object(self):
-    #     slug = self.kwargs.get('product_slug')
-    #     product = Product.objects.get(slug=slug)
-    #     return product
+    def get_object(self):
+        slug = self.kwargs.get('product_slug')
+        product = Product.objects.get(slug=slug)
+        return product

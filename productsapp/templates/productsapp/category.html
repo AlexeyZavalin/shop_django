@@ -1,8 +1,9 @@
 {% extends 'base.html' %}
 {% block content %}
     {% for product in object_list %}
-        <a href="/{{ product.slug }}">
+        <a href="{{ request.category.slug }}{{ product.slug }}">
             {{ product.title }}
+            {{ product.price }}
         </a>
     {% endfor %}
 {% endblock %}
